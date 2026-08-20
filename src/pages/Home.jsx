@@ -37,22 +37,6 @@ function getWeatherVariant(condition, cloudPercent = 0) {
 }
 
 
-function WeatherGlyph() {
-  return (
-    <svg viewBox="0 0 160 120" className={styles.weatherGlyph} aria-hidden="true">
-      <circle cx="112" cy="42" r="28" fill="#fbbf24" />
-      <ellipse cx="42" cy="72" rx="30" ry="22" fill="#eef1f8" />
-      <ellipse cx="96" cy="74" rx="34" ry="24" fill="#dde3f0" />
-      <ellipse cx="68" cy="64" rx="48" ry="28" fill="#eef1f8" />
-      <g stroke="#93a6d6" strokeWidth="3" strokeLinecap="round">
-        <line x1="54" y1="100" x2="49" y2="112" />
-        <line x1="71" y1="100" x2="66" y2="114" />
-        <line x1="88" y1="100" x2="83" y2="112" />
-      </g>
-    </svg>
-  )
-}
-
 function SearchIcon({ className }) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
@@ -210,9 +194,7 @@ function Home() {
         </button>
       </form>
       {status === 'error' && (
-        <div className={styles.ErrorBox}>
-           {status === 'error' && error}
-        </div>
+        <div className={styles.ErrorBox}>{error}</div>
       )}
       <div className={styles.page} style={{ display: hasResult ? 'block' : 'none' }}>
         <section className={styles.todayCard}>
