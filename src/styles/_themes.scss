@@ -1,0 +1,15 @@
+// Emits CSS custom properties for every theme defined in $themes
+// (see _variables.scss), scoped to [data-theme='<name>'].
+//
+// ThemeContext sets data-theme="light" | "dark" on <html>, so this cascades
+// to the whole document. Add a theme by adding a key to the $themes map —
+// no changes needed here.
+@use './variables' as *;
+
+@each $theme, $tokens in $themes {
+  [data-theme='#{$theme}'] {
+    @each $key, $value in $tokens {
+      --#{$key}: #{$value};
+    }
+  }
+}

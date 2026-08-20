@@ -1,0 +1,88 @@
+// Shared design tokens — import via `@use '../styles/variables' as *;`
+$max-width: 720px;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+
+$radius: 20px;
+$text-dim: 0.7;
+
+// Color tokens per theme. Each key becomes a CSS custom property
+// (e.g. bg -> --bg) scoped under [data-theme='light'] / [data-theme='dark'],
+// see styles/_themes.scss. Add a new top-level key here to add a new theme.
+//
+// `bg-image` is a plain CSS <image> value (a url(), or `none`). It's kept
+// as its own key rather than folded into `bg` because `bg` also has to work
+// as a plain color in some places — see App.scss / index.scss, which layer
+// bg-color (background-color: var(--bg)) and bg-image
+// (background-image: var(--bg-image)) together.
+$themes: (
+  light: (
+    surface: #f5f5f5,
+    text: #1a1a1a,
+    bg: url('/src/image/bg-light-2.png') center / cover no-repeat #121212,
+    text-muted: rgba(0, 0, 0, 0.6),
+    border: rgba(0, 0, 0, 0.13),
+    border-strong: rgba(0, 0, 0, 0.2),
+    primary: #0d6efd,
+
+    // Weather page (src/pages/Weather.jsx) tokens — kept separate from the
+    // tokens above because that page uses its own purple palette rather
+    // than the app's neutral bg/surface/text colors.
+    weather-card-solid-bg: rgba(255, 255, 255, 0.5),
+    weather-grad-a: #b7a9e8,
+    weather-grad-b: #b7a9e8,
+    weather-grad-c: #b7a9e8,
+    weather-highlight: #ffffff,
+    weather-card: rgba(255, 255, 255, 0.55),
+    weather-card-solid: rgba(255, 255, 255, 0.2),
+    weather-row: rgba(139, 123, 216, 0.08),
+    weather-button-bg: #ffffff,
+    weather-button-border: 2px solid rgba(255, 255, 255, 0.4),
+    weather-text: #2c2547,
+    weather-text-muted: #666666,
+    weather-accent: #6C40B5,
+    weather-accent1: #6C40B5,
+    weather-accent2: #2c2547,
+    weather-accent3: #666666,
+    weather-bg: rgba(255, 255, 255, 0.18),
+  ),
+  dark: (
+    bg: url('/src/image/bg-dark-2.png') center / cover no-repeat #121212,
+    surface: #1e1e1e,
+    text: #f2f2f2,
+    text-muted: rgba(255, 255, 255, 0.65),
+    border: rgba(255, 255, 255, 0.13),
+    border-strong: rgba(255, 255, 255, 0.24),
+    primary: #4dabf7,
+
+    // Weather page tokens, dark variant — same roles as the light theme
+    // above, darkened/adjusted for contrast instead of a plain filter,
+    // since these are used across gradients, translucent cards and text.
+    weather-card-solid-bg: rgba(26, 26, 26, 0.3),
+    weather-grad-a: #4a3f7a, 
+    weather-grad-b: #2e2657,
+    weather-grad-c: #17122f,
+    weather-highlight: #5b4fa3,
+    weather-card: rgba(30, 24, 58, 0.55),
+    weather-card-solid: rgba(26, 26, 26, 0.3),
+    weather-row:  rgba(26, 26, 26, 0.5),
+    weather-button-bg: transparent,
+    weather-button-border: 2px solid rgba(255, 255, 255, 0.4),
+    weather-text: #FFFFFF,
+    weather-text-muted: white,
+    weather-accent: white,
+    weather-accent1: #28124D,
+    weather-accent2: rgba(255, 255, 255, 0.5),
+    weather-accent3: rgba(255, 255, 255, 0.5),
+    weather-bg: rgba(26, 26, 26, 0.3),
+  ),
+);
+
+
+body 
+{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

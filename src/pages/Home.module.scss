@@ -1,0 +1,363 @@
+@use '../styles/variables' as *;
+
+// Colors here are all var(--weather-*) custom properties (defined per theme
+// in _variables.scss's $themes map, emitted by _themes.scss) rather than
+// Sass variables — Sass variables are resolved at build time, so they can't
+// react when ThemeContext flips data-theme on <html> at runtime. Only real
+// CSS custom properties can.
+$mobile-bp: 576px;
+
+.page {
+  border-radius: $radius;
+  padding: $spacing-md;
+  margin: 15% 0px 0px 0px;
+  background: var(--weather-bg);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--weather-text);
+
+  @media (min-width: $mobile-bp) {
+    padding: $spacing-lg;
+    margin: 20% 0px 0px 0px;
+  }
+}
+
+// --- Search bar ---------------------------------------------------------
+
+.searchBar {
+  display: flex;
+  align-items: stretch;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-lg;
+}
+
+.searchField {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: $spacing-sm $spacing-md;
+  background: var(--weather-card-solid);
+  border-radius: $radius;
+  box-shadow: 0 4px 14px rgba(48, 30, 110, 0.15);
+}
+
+.searchLabel {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--weather-text-muted);
+}
+
+.searchInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--weather-text);
+  padding: 0;
+
+  &:focus-visible {
+    outline: 2px solid var(--weather-accent);
+    outline-offset: 2px;
+  }
+}
+
+.searchButton {
+  flex-shrink: 0;
+  width: 3.5rem;
+  margin:0px 0px 0px 10px;
+  border: none;
+  border-radius: $radius;
+  background: var(--weather-accent1);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(48, 30, 110, 0.25);
+
+  &:hover {
+    filter: brightness(0.92);
+  }
+}
+
+.searchButtonIcon {
+  width: 2rem;
+  height: 2rem;
+}
+
+// --- Today's weather card ------------------------------------------------
+
+.todayCard {
+  position: relative;
+  padding: 0 0;
+  margin-bottom: $spacing-lg;
+
+  @media (min-width: $mobile-bp) {
+    padding: 0;
+   }
+}
+
+.weatherGlyph {
+  position: absolute;
+  top: -3.5rem;
+  right: -1rem;
+  width: 10rem;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(48, 30, 110, 0.2));
+  transform: scale(0.5);
+  @media (min-width: $mobile-bp) {
+        width: 20rem;
+        top: -8rem;
+        right: -1.5rem;
+        transform: scale(1);
+  }
+}
+
+
+.cloud
+{
+  z-index: 10;
+  position: relative;
+  bottom: 95px;
+  right: 80px;
+  @media (min-width: $mobile-bp) {
+    bottom: -10px;
+    right: 0;
+  }
+}
+
+.sun
+{
+  top: -340px;
+  left: 0;
+  right: -145px;
+  bottom: 0;
+  z-index: 1;
+  @media (min-width: $mobile-bp) {
+        top: -120px;
+        left: 0;
+        right: -125px;
+        bottom: 0;
+        z-index: 1;
+  }
+}
+
+.rain 
+{
+  z-index: 20;
+  position: relative;
+  bottom: 250px;
+  right: -145px;
+  transform: scale(2);
+  @media (min-width: $mobile-bp) {
+        bottom: 140px;
+        right: -300px;
+        transform: scale(2);
+  }
+}
+
+.todayTitle {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0 0 $spacing-sm;
+}
+
+.temp {
+  font-size: 5rem;
+  font-weight: 700;
+  color: var(--weather-accent);
+  line-height: 1;
+  margin: 0;
+
+  @media (min-width: $mobile-bp) {
+    font-size: 4rem;
+  }
+}
+
+.range {
+  margin:0px;
+  font-size: 0.9rem;
+  color: var(--weather-text);
+}
+
+// Mobile: two-column grid — location on the left spanning all rows,
+// condition/humidity/date stacked and right-aligned.
+.meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'location condition'
+    'location humidity'
+    'location date';
+  row-gap: 0.2rem;
+  column-gap: $spacing-md;
+  font-size: 0.85rem;
+  padding-top: 15vw;
+  width: 100%;
+  position: relative;
+
+  @media (min-width: $mobile-bp) {
+    grid-template-columns:min-content;
+    grid-template-areas: 'location date humidity condition';
+    align-items: baseline;
+    column-gap: $spacing-lg;
+    row-gap: 0;
+    position: absolute;
+    bottom: 1px;
+    right: 15px;
+    width: 500px;
+    padding-top: 6.5vw;
+  }
+}
+
+.metaLocation {
+  grid-area: location;
+  align-self: center;
+  color: var(--weather-text-muted);
+  font-weight: 700;
+}
+
+.metaCondition {
+  grid-area: condition;
+  text-align: right;
+  color: var(--weather-text-muted);
+
+  @media (min-width: $mobile-bp) {
+    text-align: right;
+  }
+}
+
+.metaHumidity {
+  grid-area: humidity;
+  text-align: right;
+  color: var(--weather-text-muted);
+
+  @media (min-width: $mobile-bp) {
+    text-align: left;
+  }
+}
+
+.metaDate {
+  grid-area: date;
+  text-align: right;
+  color: var(--weather-text-muted);
+  @media (min-width: $mobile-bp) {
+    text-align: left;
+  }
+}
+
+// --- Search history --------------------------------------------------------
+
+.historyCard {
+  background: var(--weather-card-solid);
+  border-radius: $radius;
+  padding: $spacing-md;
+  box-shadow: 0 8px 24px rgba(48, 30, 110, 0.12);
+
+  @media (min-width: $mobile-bp) {
+    padding: $spacing-lg;
+  }
+}
+
+.historyTitle {
+  font-size: 0.95rem;
+  margin: 0 0 $spacing-md;
+  color: var(--weather-text);
+}
+
+.historyList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $spacing-md;
+  border-radius:16px;
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: var(--weather-row);
+}
+
+.historyLocation {
+  font-size: 1rem;
+  width: 100%;
+  color: var(--weather-text);
+  @media (min-width: $mobile-bp) {
+      width: 200px;
+    }
+}
+
+.historyDate {
+  font-size: 0.9rem;
+  width: 100%;
+  text-align: left;
+  color: var(--weather-accent2);
+    @media (min-width: $mobile-bp) {
+      text-align: right;
+      width: 250px;
+    }
+}
+
+.historyActions {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.historyButton {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: var(--weather-button-border);
+  border-radius: 50%;
+  background: var(--weather-button-bg);
+  color: var(--weather-accent3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(48, 30, 110, 0.15);
+
+  &:hover {
+  }
+}
+
+.historyIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.historyEmpty {
+  text-align: center;
+  color: var(--weather-text-muted);
+  font-size: 0.85rem;
+  padding: $spacing-md 0;
+}
+
+
+// --- Search bar ---------------------------------------------------------
+
+.ErrorBox {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0.5;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  text-shadow: 1px 1px red;
+  color: white;
+}

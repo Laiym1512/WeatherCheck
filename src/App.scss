@@ -1,0 +1,196 @@
+@use './styles/variables' as *;
+@use './styles/themes';
+
+.app {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: $spacing-lg;
+  min-height: 100vh;
+  color: var(--text);
+  overflow: hidden;
+  background-color:transparent;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: $spacing-md;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: $spacing-lg;
+
+  &-brand {
+    font-weight: 600;
+  }
+
+  &-links {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      opacity: $text-dim;
+
+      &.active {
+        opacity: 1;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+button {
+  padding: $spacing-sm $spacing-md;
+  border-radius: $radius;
+  border: 1px solid var(--border-strong);
+  cursor: pointer;
+}
+
+.navbar-theme-toggle {
+  margin-left: auto;
+}
+
+.navbar-theme-toggle {
+  border:white 1px solid;
+  color:white;
+}
+
+._searchInput_wof4c_46{
+  outline: none !important;
+}
+
+button 
+{
+  padding: 0px;
+}
+
+body {
+  background:#2EB5E5 ;
+}
+
+.navbar-theme-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.navbar-theme-toggle
+{
+  border: white 1px solid;
+  border-radius: 5px;
+}
+
+// ---  Sun Animation from Online  ------------------------------------------------
+
+.sun { 
+  position: absolute;
+	margin: auto;  
+	width:100px;
+	height:100px;
+  opacity: 0.9;
+	border-radius:50%;	
+  background: linear-gradient(36.17deg, rgba(224, 117, 18, 1) 20.69%, rgba(245, 194, 11, 1) 73.43%);
+  box-shadow: 0px 0px 40px 15px white;  
+}
+
+.ray_box {
+  position: absolute;
+  margin: auto;
+	top:0px;
+	left:0;
+	right:0;
+	bottom:0;	
+  width:70px;  
+  -webkit-animation: ray_anim 120s linear infinite;
+  animation: ray_anim 120s linear infinite;
+}
+.ray {  
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+		background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255,255,255,0) 100%); 
+    margin-left:10px;
+    border-radius:80% 80% 0 0;
+    position:absolute;
+    opacity:0.1;
+}
+
+.ray1 {    
+    height:170px;
+    width:30px;
+   -webkit-transform: rotate(180deg);
+    top:-175px;
+    left: 15px;
+}
+.ray2 {
+    height:100px;
+    width:8px;
+   -webkit-transform: rotate(220deg);
+    top:-90px;
+    left: 75px;
+}
+.ray3 {
+    height:170px;
+    width:50px;
+   -webkit-transform: rotate(250deg);
+    top:-80px;
+    left: 100px;
+}
+.ray4 {
+    height:120px;
+    width:14px;
+   -webkit-transform: rotate(305deg);
+    top:30px;
+    left: 100px;
+}
+.ray5 {
+    height:140px;
+    width:30px;
+   -webkit-transform: rotate(-15deg);
+    top:60px;
+    left: 40px;
+}
+.ray6 {
+    height:90px;
+    width:50px;
+   -webkit-transform: rotate(30deg);
+    top:60px;
+    left: -40px;
+}
+.ray7 {
+    height:180px;
+    width:10px;
+   -webkit-transform: rotate(70deg);
+    top:-35px;
+    left: -40px;
+}
+.ray8 {
+    height:120px;
+    width:30px;
+   -webkit-transform: rotate(100deg);
+    top:-45px;
+    left:-90px;
+}
+.ray9 {
+    height:80px;
+    width:10px;
+   -webkit-transform: rotate(120deg);
+    top:-65px;
+    left:-60px;
+}
+.ray10 {
+    height:190px;
+    width:23px;
+   -webkit-transform: rotate(150deg);
+    top:-185px;
+    left: -60px;
+}
+
+
+
+@-webkit-keyframes ray_anim { 
+		0% { -webkit-transform: rotate(0deg); transform: rotate(0deg);}    
+    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg);}
+}
+
