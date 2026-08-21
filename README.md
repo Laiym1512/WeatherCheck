@@ -1,4 +1,4 @@
-# React Starter
+# React App
 
 A minimal Vite + React + React Router starter, with Sass (including a
 light/dark theme system) and Bootstrap wired up.
