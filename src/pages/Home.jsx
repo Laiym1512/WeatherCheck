@@ -145,8 +145,7 @@ function Home() {
       }
 
       settoday(nexttoday)
-      setHasResult(true)
-
+      setHasResult(true)  
       setHistory((prev) => {
         const isSameAsLatest = prev[0]?.location === nexttoday.location
         if (isSameAsLatest) {
@@ -157,7 +156,7 @@ function Home() {
           ...prev,
         ]
       })
-
+      setCountry('')
       setStatus('idle')
     } catch (err) {
       setStatus('error')
