@@ -7,7 +7,7 @@ import rainIcon from '../image/rain.svg'
 // One Call (which needs a separate paid subscription). Get a key at
 // https://openweathermap.org/appid; new keys can take up to ~2 hours to
 // activate. Put it in .env as VITE_OPENWEATHER_API_KEY (see .env.example).
-const OPENWEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY
+const OPENWEATHER_API_KEY = '3174d32091471b757bbca8ffac3509e5'
 const OPENWEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather'
 const INITIAL_HISTORY = []
 const TODAY_STORAGE_KEY = 'weatherToday'
