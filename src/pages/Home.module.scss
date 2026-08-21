@@ -196,7 +196,7 @@ $mobile-bp: 576px;
   row-gap: 0.2rem;
   column-gap: $spacing-md;
   font-size: 0.85rem;
-  padding-top: 15vw;
+  padding-top: 3.7rem;
   width: 100%;
   position: relative;
 
@@ -360,4 +360,36 @@ $mobile-bp: 576px;
   text-align: center;
   text-shadow: 1px 1px red;
   color: white;
+}
+
+
+
+// ---  Loading Animation  ------------------------------------------------
+
+.loadingbg 
+{
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    position: absolute;
+    background: rgba(34, 34, 34, 0.75);
+    top: 0;
+    left: 00;
+}
+
+.spinner {
+  width: 3.75rem;
+  height: 3.75rem;
+  margin: 25% auto;
+  border: 3px solid var(--weather-card-solid);
+  border-top-color: var(--weather-accent);
+  z-index: 50;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

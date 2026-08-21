@@ -196,6 +196,11 @@ function Home() {
       {status === 'error' && (
         <div className={styles.ErrorBox}>{error}</div>
       )}
+      {status === 'loading' && (
+        <div className={styles.loadingbg}>
+            <div className={styles.spinner} role="status" aria-label="Loading weather data" />
+        </div>
+      )}
       <div className={styles.page} style={{ display: hasResult ? 'block' : 'none' }}>
         <section className={styles.todayCard}>
                     <div
