@@ -146,10 +146,18 @@ function Home() {
 
       settoday(nexttoday)
       setHasResult(true)
-      setHistory((prev) => [
-        { id: `${nexttoday.location}-${Date.now()}`, location: nexttoday.location, date: now },
-        ...prev,
-      ])
+
+      setHistory((prev) => {
+        const isSameAsLatest = prev[0]?.location === nexttoday.location
+        if (isSameAsLatest) {
+          return prev
+        }
+        return [
+          { id: `${nexttoday.location}-${Date.now()}`, location: nexttoday.location, date: now },
+          ...prev,
+        ]
+      })
+
       setStatus('idle')
     } catch (err) {
       setStatus('error')
@@ -158,13 +166,21 @@ function Home() {
   }
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    searchWeather(country)
+      event.preventDefault()
+      searchWeather(country)
   }
 
-  const handleDelete = (id) => {
-    setHistory((prev) => prev.filter((item) => item.id !== id))
-  }
+const handleDelete = (id) => {
+  setHistory((prev) => {
+    const next = prev.filter((item) => item.id !== id)
+    if (next.length === 0) {
+      settoday(DEFAULT_TODAY)
+      setHasResult(false)
+      localStorage.removeItem(TODAY_STORAGE_KEY)
+    }
+    return next
+  })
+}
 
   useEffect(() => {
     if (hasResult) {
